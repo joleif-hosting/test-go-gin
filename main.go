@@ -54,6 +54,9 @@ func main() {
 		c.JSON(http.StatusCreated, newUser)
 	})
 
-	// Start server
-	router.Run(":80")
+	port := os.Getenv("PORT")
+        if port == "" {
+            port = "8080"  // Default fallback
+        }
+        router.Run(":" + port)
 }
